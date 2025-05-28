@@ -1,0 +1,347 @@
+{
+  "name": "SENDTOTGB",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -140,
+        -180
+      ],
+      "id": "12a72b52-38c4-43ac-837d-e14a5b5796c5",
+      "name": "Telegram Trigger",
+      "webhookId": "aa3982af-3878-42ff-8b2b-6f092c8e8430",
+      "credentials": {
+        "telegramApi": {
+          "id": "oX7r6vv843FA22sI",
+          "name": "@typingbotbotbot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fe7ecc99-e1e8-4a5e-bdd6-6fce9757b234",
+              "name": "text",
+              "value": "={{ $json.business_message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1964d9d4-11bd-4248-ac7f-d0a1bc40b177",
+      "name": "Set 'Text'",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        300,
+        -180
+      ],
+      "id": "f52eb832-5373-4050-8bdb-d7e0c31034b8",
+      "name": "Wait",
+      "webhookId": "4c9efd50-1752-46f9-8385-e174e1738613"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/botAPICODE/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.chat.id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "business_connection_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.business_connection_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        -180
+      ],
+      "id": "1480d5a0-451a-4fa9-9daf-94ba7df10f34",
+      "name": "SEND Typing"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/botAPICODE/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.chat.id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "business_connection_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.business_connection_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        -180
+      ],
+      "id": "64aba471-436c-4833-bf85-f5178f1052d3",
+      "name": "SEND Image Group"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/botAPICODE/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.chat.id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "business_connection_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.business_connection_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1840,
+        -180
+      ],
+      "id": "1c39a5e8-9b4d-44b8-98bf-745024c11413",
+      "name": "SEND Text"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        740,
+        -180
+      ],
+      "id": "de0f99d4-60f4-49d3-b57d-7746356c58eb",
+      "name": "Wait1",
+      "webhookId": "4c9efd50-1752-46f9-8385-e174e1738613"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        -180
+      ],
+      "id": "47e8846e-9ca2-4173-a2fb-db301870d959",
+      "name": "Wait2",
+      "webhookId": "4c9efd50-1752-46f9-8385-e174e1738613"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.telegram.org/botAPICODE/sendMessage",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "chat_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.chat.id }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "business_connection_id",
+              "value": "={{ $('Telegram Trigger').item.json.business_message.business_connection_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1400,
+        -180
+      ],
+      "id": "cc820d08-2d94-4fbb-bd01-8aad25141e14",
+      "name": "SEND Typing1"
+    },
+    {
+      "parameters": {
+        "amount": 3
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        -180
+      ],
+      "id": "6a74a09a-addb-4d7e-942d-16414b1bb128",
+      "name": "Wait3",
+      "webhookId": "4c9efd50-1752-46f9-8385-e174e1738613"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set 'Text'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set 'Text'": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "SEND Typing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "SEND Image Group",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEND Typing": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "SEND Typing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEND Image Group": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SEND Typing1": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "SEND Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ea9a9387-785c-4973-bc54-988285151c41",
+  "meta": {
+    "instanceId": "13608a58250e5adc42f78dc396c4e91229648b5ace4c51f35e96dd888054eb8a"
+  },
+  "id": "6RSvtXCO6CmtPOnw",
+  "tags": []
+}
